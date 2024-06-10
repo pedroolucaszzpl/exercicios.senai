@@ -1,0 +1,89 @@
+<!-- Pedro Lucas Ferreira Farias nº28 -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 04</title>
+  <style>
+    /* Pedro Lucas Ferreira Farias nº28 */
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin: 20px auto;
+        border: 1px solid #dddddd;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #addRowBtn {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    #addRowBtn:hover {
+        background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <!-- Pedro Lucas Ferreira Farias nº28 -->
+
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th>Cabeçalho 1</th>
+        <th>Cabeçalho 2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dado 1</td>
+        <td>Dado 2</td>
+      </tr>
+      <tr>
+        <td>Dado 3</td>
+        <td>Dado 4</td>
+      </tr>
+    </tbody>
+  </table>
+  <button id="addRowBtn">Adicionar Nova Linha</button>
+
+  <script>
+    // Pedro Lucas Ferreira Farias nº28
+
+    document.getElementById("addRowBtn").addEventListener("click", function() {
+        var table = document.getElementById("myTable").getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow(table.rows.length);
+        var cell1 = newRow.insertCell(0);
+        var cell2 = newRow.insertCell(1);
+        cell1.innerHTML = "Novo Dado 1";
+        cell2.innerHTML = "Novo Dado 2";
+    });
+  </script>
+</body>
+</html>

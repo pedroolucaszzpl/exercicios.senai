@@ -1,0 +1,126 @@
+<!-- Pedro Lucas Ferreira Farias nº 28 -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 14</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+        .filter-buttons {
+            margin: 20px 0;
+        }
+
+        .filter-buttons button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .gallery-item {
+            width: 200px;
+            display: none;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="filter-buttons">
+        <button onclick="filterGallery('all')">Todos</button>
+        <button onclick="filterGallery('nature')">Natureza</button>
+        <button onclick="filterGallery('city')">Cidade</button>
+        <button onclick="filterGallery('animals')">Animais</button>
+    </div>
+    <div class="gallery">
+        <div class="gallery-item nature">
+            <img src="https://www.caronacultural.com.br/wp-content/uploads/2023/10/Captura-de-Tela-2023-10-12-a%CC%80s-11.47.26_Easy-Resize.com_-1140x530.jpg" alt="Natureza 1">
+        </div>
+        <div class="gallery-item city">
+            <img src="https://s2-casaejardim.glbimg.com/mEjIVIiHaSMuo6yxAFH3f352HQo=/0x0:1500x1100/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_a0b7e59562ef42049f4e191fe476fe7d/internal_photos/bs/2023/c/P/ht3O0cRWOAwXiDUuWxSQ/sao-paulo-esta-entre-as-melhores-cidades-do-mundo-de-acordo-com-ranking2.jpg" alt="Cidade 1">
+        </div>
+        <div class="gallery-item animals">
+            <img src="https://reallylearnportuguese.com/wp-content/uploads/2022/04/image-1024x682.jpg" alt="Animais 1">
+        </div>
+        <div class="gallery-item nature">
+            <img src="https://s2-g1.glbimg.com/4sqWXeqhi9IUhQgj9dLsZ7v-msc=/0x0:4320x3240/1008x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2017/B/6/80mbr2SBmfJ57iJUsOkg/petar-parque-estadual-turistico-do-alto-ribeira-sp-eduardo-lacerda-5-.jpg" alt="Natureza 2">
+        </div>
+        <div class="gallery-item city">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Cidade_Maravilhosa.jpg/640px-Cidade_Maravilhosa.jpg" alt="Cidade 2">
+        </div>
+        <div class="gallery-item animals">
+            <img src="https://s2.glbimg.com/shVyfsOkEsvzsdRQWbutCuMJrxs=/400x350/top/e.glbimg.com/og/ed/f/original/2013/12/03/como_criar_tucano.jpg" alt="Animais 2">
+        </div>
+        <div class="gallery-item nature">
+            <img src="https://images.ecycle.com.br/wp-content/uploads/2022/01/24131543/maldives-g03da4943c_1920.jpg.webp" alt="Natureza 3">
+        </div>
+        <div class="gallery-item city">
+            <img src="https://imagens.ebc.com.br/g4N1p6Ng5vQjunmV0v91L_buFls=/1170x700/smart/https://agenciabrasil.ebc.com.br/sites/default/files/thumbnails/image/_mg_9111_1.jpg?itok=kkEikVzY" alt="Cidade 3">
+        </div>
+        <div class="gallery-item animals">
+            <img src="https://media.gazetadopovo.com.br/2017/02/golfinho-2.0.2277277613-gpLarge.jpg" alt="Animais 3">
+        </div>
+    </div>
+    <script>
+        function filterGallery(category) {
+            let items = document.querySelectorAll('.gallery-item');
+            if (category === 'all') {
+                items.forEach(item => {
+                    item.classList.add('show');
+                });
+            } else {
+                items.forEach(item => {
+                    if (item.classList.contains(category)) {
+                        item.classList.add('show');
+                    } else {
+                        item.classList.remove('show');
+                    }
+                });
+            }
+        }
+
+        // Mostrar todos os itens por padrão
+        filterGallery('all');
+    </script>
+</body>
+</html>
+

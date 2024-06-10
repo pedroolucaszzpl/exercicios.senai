@@ -1,0 +1,55 @@
+ <!-- Pedro Lucas Ferreira Farias nº28  -->
+ <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 15</title>
+  <style>
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #textInput {
+        width: 80%;
+        max-width: 600px;
+        height: 100px;
+        margin: 20px auto;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    #wordCount {
+        font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Pedro Lucas Ferreira Farias nº28 -->
+
+  <textarea id="textInput" rows="4" cols="50" placeholder="Digite aqui..."></textarea>
+  <p>Número de palavras digitadas: <span id="wordCount">0</span></p>
+
+  <script>
+    // Pedro Lucas Ferreira Farias nº28
+
+    const textInput = document.getElementById('textInput');
+    const wordCountDisplay = document.getElementById('wordCount');
+
+    textInput.addEventListener('input', function() {
+      const text = textInput.value.trim(); // Remove espaços em branco do início e do fim
+      const wordCount = text === '' ? 0 : text.split(/\s+/).length; // Conta o número de palavras separadas por espaços em branco
+      wordCountDisplay.textContent = wordCount;
+    });
+  </script>
+</body>
+</html>

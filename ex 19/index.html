@@ -1,0 +1,121 @@
+<!-- Pedro Lucas Ferreira Farias nº 28 -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 19</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input[type="file"] {
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #preview {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .preview-item {
+      margin: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    p {
+      margin: 0;
+      padding: 10px;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Formulário de Upload de Arquivos</h2>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" id="fileInput" name="fileInput[]" multiple>
+    <button type="submit">Enviar Arquivos</button>
+  </form>
+  
+  <h2>Visualização dos Arquivos Selecionados</h2>
+  <div id="preview"></div>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const uploadForm = document.getElementById('uploadForm');
+    const preview = document.getElementById('preview');
+
+    fileInput.addEventListener('change', function() {
+      preview.innerHTML = ''; 
+      
+      const files = fileInput.files;
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+          const previewItem = document.createElement('div');
+          previewItem.className = 'preview-item';
+
+          const img = document.createElement('img');
+          img.src = event.target.result;
+          img.alt = file.name;
+
+          const fileName = document.createElement('p');
+          fileName.textContent = file.name;
+
+          previewItem.appendChild(img);
+          previewItem.appendChild(fileName);
+          preview.appendChild(previewItem);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    });
+
+    uploadForm.addEventListener('submit', function(event) {
+      event.preventDefault(); 
+      // Aqui você pode adicionar lógica para enviar os arquivos para o servidor
+    });
+  </script>
+</body>
+</html>
+    

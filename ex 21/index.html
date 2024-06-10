@@ -1,0 +1,169 @@
+<!-- Pedro Lucas Ferreira Farias nº 28 -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 21</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            margin-top: 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        form label {
+            margin-bottom: 5px;
+        }
+
+        form input {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        form button {
+            padding: 10px;
+            border: none;
+            background: #5cb85c;
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background: #4cae4c;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li button {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        li button:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reserva de Horário</h1>
+        <form id="reservation-form">
+            <label for="date">Data:</label>
+            <input type="date" id="date" required>
+            <label for="time">Hora:</label>
+            <input type="time" id="time" required>
+            <button type="submit">Fazer Reserva</button>
+        </form>
+        <h2>Reservas</h2>
+        <ul id="reservation-list"></ul>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadReservations);
+        document.getElementById('reservation-form').addEventListener('submit', addReservation);
+        document.getElementById('reservation-list').addEventListener('click', manageReservations);
+
+        function addReservation(e) {
+            e.preventDefault();
+
+            const dateInput = document.getElementById('date').value;
+            const timeInput = document.getElementById('time').value;
+
+            if (dateInput === '' || timeInput === '') return;
+
+            const reservation = {
+                date: dateInput,
+                time: timeInput
+            };
+
+            const reservations = getReservationsFromLocalStorage();
+            reservations.push(reservation);
+            localStorage.setItem('reservations', JSON.stringify(reservations));
+
+            document.getElementById('reservation-form').reset();
+
+            renderReservations();
+        }
+
+        function loadReservations() {
+            renderReservations();
+        }
+
+        function renderReservations() {
+            const reservations = getReservationsFromLocalStorage();
+            const reservationList = document.getElementById('reservation-list');
+            reservationList.innerHTML = '';
+
+            reservations.forEach((reservation, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${reservation.date} às ${reservation.time}</span>
+                    <button class="delete-btn" data-index="${index}">Cancelar</button>
+                `;
+                reservationList.appendChild(li);
+            });
+        }
+
+        function manageReservations(e) {
+            if (e.target.classList.contains('delete-btn')) {
+                const index = e.target.dataset.index;
+                removeReservation(index);
+            }
+        }
+
+        function removeReservation(index) {
+            const reservations = getReservationsFromLocalStorage();
+            reservations.splice(index, 1);
+            localStorage.setItem('reservations', JSON.stringify(reservations));
+            renderReservations();
+        }
+
+        function getReservationsFromLocalStorage() {
+            return localStorage.getItem('reservations') ? JSON.parse(localStorage.getItem('reservations')) : [];
+        }
+    </script>
+</body>
+</html>
